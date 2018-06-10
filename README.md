@@ -36,7 +36,7 @@ Among applications optimised for landscape view, most are bare-bones functional 
 
 -	Sometimes email notifications are very slow to arrive, and in most cases reading an email message from one computer *does not* remove the read notification from another, which is a deal-breaker.
 
--	Calendars relatively useless, as Outlook does not work with Android’s calendar service, and instead keeps its own isolated storage space. This makes it a poor choice to work with iCloud calendars, which are CalDAV compliant but not supported by Outlook.
+-	Calendars relatively useless, as Outlook does not work with Android’s calendar service, and instead keeps its own isolated storage space. This makes it a poor choice to work with iCloud calendars if you want other apps to be able to add calendar entries as well without having to do a roundtrip via iCloud to have them also reflect in Outlook.
 
 -	Does not support Google’s flavour of ActiveSync, and upon failure to connect to the server during setup, kicks the user back to step one and removes all values in text input boxes. User-hostile design.
 
