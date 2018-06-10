@@ -8,7 +8,7 @@ Among applications optimised for landscape view, most are bare-bones functional 
 
 ### Email
 
-**Nine Email:** Best in class with regards to synchronisation, as it is able to utilise Google’s G Suite ActiveSync emulation layer. Push email works, and more importantly, if an email is read on one devie, it is automatically marked as read in Nine Email, and the unread notification is removed. This makes Nine Email the only application currently acceptable for the Gemini.
+**Nine Email:** Best in class with regards to synchronisation, as it is able to utilise Google’s G Suite ActiveSync emulation layer. Push email works, and more importantly, if an email is read on one device, it is automatically marked as read in Nine Email, and the unread notification is removed. This makes Nine Email the only application currently acceptable for the Gemini.
 
 - 	Incorrect typography for the Messages list, with the subject of the message being at the same font weight and colour as the message preview. No ability to adjust lines of text in the preview. Need to follow up with support team.
 
@@ -23,6 +23,8 @@ Among applications optimised for landscape view, most are bare-bones functional 
 	Update: seems to have been fixed after device reboot.
 
 -	When setting emails to be notified separately the unread counter (via TeslaUnread) is correct but only one notification is shown in Notifications. Need to follow up with support team.
+
+– Three-panel layout with message preview and body panels visible is reserved for tablets, despite the Gemini having a 2:1 aspect ration screen which would comfortably fit the information. Need to follow up with support team.
 
 **Gmail:** Good support from Google, with push email notifications arriving more or less at the same time as Nine Email. 
 
