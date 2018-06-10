@@ -194,7 +194,7 @@ Alternatively if you want a higher density you would have done it like this:
 
 #### Limitations
 
-Overscan not respected by lock screen.
+Overscan not respected by lock screen. I understand that some Navigation Bar removal applications are implemented as IMEs but in my view this really needs to be done by Planet as an user-toggled option when baking new system images. Any other solution would involve an ungoodly amout of hacks.
 
 ## Miscellaneous
 
