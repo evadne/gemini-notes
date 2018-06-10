@@ -1,0 +1,55 @@
+[Version] 
+Signature="$Windows NT$" 
+Class=Ports 
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318} 
+
+Provider=%MTK% 
+DriverVer=09/21/2015,1.0
+
+[Manufacturer] 
+%MTK%=MTK 
+
+[MTK]
+%MTK6218%=Reader,USB\Vid_0e8d&Pid_0003,USB\Vid_0e8d&Pid_1003
+%MTK_COM%=Reader,USB\Vid_0e8d&Pid_0023&MI_00
+%MTK_CAT%=Reader,USB\Vid_0e8d&Pid_0023&MI_02
+%MTK_PRELOADER%=Reader, USB\Vid_0e8d&Pid_2000
+%MTK_SP_DA%=Reader, USB\Vid_0e8d&Pid_2001
+[Reader_Install.NTx86] 
+
+[DestinationDirs] 
+DefaultDestDir=12 
+
+[Reader.NT]
+Include=mdmcpq.inf
+AddReg=Reader.NT.AddReg
+CopyFiles=FakeModemCopyFileSection
+
+[Reader.NT.AddReg] 
+HKR,,DevLoader,,*ntkern 
+HKR,,NTMPDriver,,usbser.sys 
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider" 
+
+[Reader.NT.Services] 
+AddService = usbser, 0x00000002, Service_Inst 
+
+[Service_Inst] 
+DisplayName = %Serial.SvcDesc% 
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER 
+StartType = 3 ; SERVICE_DEMAND_START 
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL 
+ServiceBinary = %12%\usbser.sys 
+LoadOrderGroup = Base 
+
+[SourceDisksNames]
+
+[SourceDisksFiles]
+
+[Strings] 
+MTK = "tehnotone.com" 
+MTK6218 = "MTK USB Port" 
+MTK_COM = "MTK USB Modem Port"
+MTK_CAT = "MTK USB Debug Port"
+MTK_PRELOADER = "MediaTek PreLoader USB VCOM Port"
+MTK_SP_DA = "MediaTek DA USB VCOM Port"
+Serial.SvcDesc = "USB Serial emulation modem driver" 
