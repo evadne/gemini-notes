@@ -162,7 +162,7 @@ If the Navigation bar is switched off with Immersive Mode switches, it will be s
 
 A mix of Overscan Adjustments and Immersive Mode switches achieve the same effect without issue.
 
-#### Implementation
+#### Implementation (w/o Root)
 
 USB Debugging must be turned on first as the solution requires ADB. Note the following steps assume default density
 
@@ -194,11 +194,24 @@ Alternatively if you want a higher density you would have done it like this:
 	./adb shell settings put system font_scale 1.33
 	./adb shell settings put global policy_control …
 
-#### Limitations
+Limitations: Overscan not respected by lock screen. I understand that some Navigation Bar removal applications are implemented as IMEs but in my view this really needs to be done by Planet as an user-toggled option when baking new system images. Any other solution would involve an ungoodly amout of hacks.
 
-Overscan not respected by lock screen. I understand that some Navigation Bar removal applications are implemented as IMEs but in my view this really needs to be done by Planet as an user-toggled option when baking new system images. Any other solution would involve an ungoodly amout of hacks.
+#### Implementation (w/ Root)
+
+1.  Flash `patched_boot.img` from Planet into boot volume.
+2.  Reboot and install Magisk Manager. Set “superuser” to always deny, and do not give root to any app nor ADB.
+3.  Install Hide Navigation Bar module.
+4.  Reboot.
+5.  Undo any wm tweaks as previously done.
+
+Re-flash original bootloader from Planet if/when they add this as a switch in their own ROM.
 
 ## Miscellaneous
+
+### Other Magisk Modules
+
+-  Cloudflare DNS 4 Magisk
+-  IOS 11.1 Emoji
 
 ### Windows Flashing
 
