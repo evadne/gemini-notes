@@ -204,7 +204,16 @@ Limitations: Overscan not respected by lock screen. I understand that some Navig
 4.  Reboot.
 5.  Undo any wm tweaks as previously done.
 
-Re-flash original bootloader from Planet if/when they add this as a switch in their own ROM.
+Re-flash original bootloader from Planet if/when they add this as a switch in their own ROM and the non-rooted version has been checked to be clean.
+
+### Forest Wallpaper
+
+I have filed a bug with the author of Forest Wallpaper w.r.t. the following issue, when it happens the device gets hot:
+
+    MALI    : gles_state_set_error_internal:75: [MALI] GLES ctx: 0x7775b22688, error code:0x502
+    MALI    : gles_state_set_error_internal:76: [MALI] GLES error info: the size of the uniform variable declared in the shader does not match the size indicated by the glUniform command
+
+Disabling the “Stars” layer in Forest fixes the problem.
 
 ## System Customisation
 
@@ -221,6 +230,49 @@ The MTK DuraSpeed application queries Google Play and QQ app stores to assign a 
 This is unacceptable to me at least. And when Flight Mode is on, the device gets quite hot.
 
 Go to Settings, Apps. Reveal the menu and select Show System Apps. Find DuraSpeed. Uninstall / Disable and Force Kill any running service.
+
+### Disable OTA Update Process
+
+Assuming Planet distributes new firmware images we do not need the OTA updater which is called `com.fota.wirelessupdate` but who knows what it is doing given its resemblance of and recent discussion. This action requires root and you will need to configure this (perhaps temporarily) in Magisk Manager for root to be granted to adb.
+
+If you want the APK then pull it thusly (root not required)
+
+    ./adb pull /system/priv-app/SystemFota_EASTAEON_20170913_5.x_7.x/SystemFota_EASTAEON_20170913_5.x_7.x.apk .
+
+A copy of this APK is kept in the repository under `SystemFota_EASTAEON_20170913_5.x_7.x.apk` for further analysis.
+
+Otherwise,
+
+    ➜  android-platform-tools ./adb shell
+    Planet:/ $ su 
+    Planet:/ # whoami
+    root
+    Planet:/ # pm disable com.fota.wirelessupdate
+    Package com.fota.wirelessupdate new state: disabled
+
+Verify that Firmware Update no longer shows in Apps even with “Show System” on.
+
+If you want to check what other system packages are on the system you can do it this way:
+
+    ./adb shell pm list packages -f | grep -v 'package:/data' | sort
+
+This lists all applications outside of `/data`, assuming that you have not been naughty or negligent in installing packages.
+
+Such a list taken from Planet’s May 2018 X27 firmware is under `gemini-bundled-packages.txt` for further analysis.
+
+### Disable other MTK-bundled applications
+
+Check out [Dissecting an Android ChinaPhone or Hunting for Spy/Malware](https://bitlog.it/mobile/dissecting-an-android-chinaphone/);
+
+I have disabled the following as root:
+
+-  `com.baidu.map.location`: No need, since this is for users in China
+-  `com.android.calendar`: Native calendar app (MTK fork), which is separate from Calendar Storage anyway.
+-  `com.android.browser`: Native browser app (MTK fork), no use since I’ve got Brave already.
+-  `com.zte.engineer`: Probably [this](https://www.scribd.com/doc/94279243/The-Engineering-Mode-of-ZTE-Handset), no use anyway, so removed solely due to it being from ZTE.
+-  `com.huaqin.runtime`: “Runtime Test” application, removed due to it being from China.
+-  `com.mediatek.mtklogger`: The notorious “MTK Logger”
+-  `com.mediatek.ygps`: GPS test tool. Removed due to being from MTK, with no apparent side effect so far.
 
 ## Miscellaneous
 
