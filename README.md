@@ -214,6 +214,14 @@ There is a feature in Nova Launcher which allows searching Google as an overlay 
 
 Go to Settings, Apps and find Google, then attempt to Uninstall / Disable. When asked whether to restore factory version, answer YES, then re-enable and go to Google Play, find the Google app and disable auto-updates for the Google app.
 
+### Disable MTK DuraSpeed
+
+The MTK DuraSpeed application queries Google Play and QQ app stores to assign a category to each application installed, which ostensibly is used to provide the end user with a categorisation function when they visit the DuraSpeed page in Settings.
+
+This is unacceptable to me at least. And when Flight Mode is on, the device gets quite hot.
+
+Go to Settings, Apps. Reveal the menu and select Show System Apps. Find DuraSpeed. Uninstall / Disable and Force Kill any running service.
+
 ## Miscellaneous
 
 ### Other Magisk Modules
