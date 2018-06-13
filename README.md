@@ -206,6 +206,14 @@ Limitations: Overscan not respected by lock screen. I understand that some Navig
 
 Re-flash original bootloader from Planet if/when they add this as a switch in their own ROM.
 
+## System Customisation
+
+### Disable auto-updating of Google app and lock it to factory version (7.x)
+
+There is a feature in Nova Launcher which allows searching Google as an overlay when the user types in the Home Screen. Google app versions 8.x and newer broke the overlay so the background is no longer semi-transparent. The factory version in Planet’s May 2018 firmware is v 7.x and so far it has been fine.
+
+Go to Settings, Apps and find Google, then attempt to Uninstall / Disable. When asked whether to restore factory version, answer YES, then re-enable and go to Google Play, find the Google app and disable auto-updates for the Google app.
+
 ## Miscellaneous
 
 ### Other Magisk Modules
