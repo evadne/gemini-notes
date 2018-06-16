@@ -274,6 +274,10 @@ I have disabled the following as root:
 -  `com.mediatek.mtklogger`: The notorious “MTK Logger”
 -  `com.mediatek.ygps`: GPS test tool. Removed due to being from MTK, with no apparent side effect so far.
 
+### Disable MTK Ambient-Light Adaptive Luma
+
+See [link](https://droidagency.com/fixing-2d-gamingui-lags-on-mediatek-devices-1948/) the feature polls the ambient light sensor all the time. This feature can be disabled in engineering mode as needed. I’ve not yet done so.
+
 ## Miscellaneous
 
 ### Other Magisk Modules
