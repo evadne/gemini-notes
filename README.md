@@ -278,6 +278,17 @@ I have disabled the following as root:
 
 See [link](https://droidagency.com/fixing-2d-gamingui-lags-on-mediatek-devices-1948/) the feature polls the ambient light sensor all the time. This feature can be disabled in engineering mode as needed. I’ve not yet done so.
 
+### Deal with the SimProcessor notification
+
+The notification flashes for one second on boot which is annoying.
+
+1.  Go to Settings
+2.  Go to Notifications
+2.  Select Show System
+4.  Find SimProcessor
+5.  Set the app to not have notifications shown on the lock screen
+6.  Set the application to have notifications shown silently
+
 ## Miscellaneous
 
 ### Other Magisk Modules
