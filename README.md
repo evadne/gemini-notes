@@ -289,6 +289,22 @@ The notification flashes for one second on boot which is annoying.
 5.  Set the app to not have notifications shown on the lock screen
 6.  Set the application to have notifications shown silently
 
+### Crackling and Popping Noises in USB DAC
+
+Get [USB Audio Player Pro](https://play.google.com/store/apps/details?id=com.extreamsd.usbaudioplayerpro&hl=en)
+
+My settings, with a Covix device, is as follows:
+
+-  USB Audio Tweaks: Enable “tweak for devices with root access”
+
+No idea what it does but Apple Music playback no longer crackles / pops even after a full restart, as long as I launch and keep USB Audio Player Pro running before launching Apple Music… and as long as the USB Type-C DAC is plugged into the left port?
+
+I also had Kernel Aduitor change CPU governor to performance and minimum frequency to 1.5GHz on boot, this may or may not have initeracted with the situation.
+
+Need to follow up with Planet on why the right port is acting differently, possibly a voltage supply problem and also I suspect the magic HDMI cable only working with the right port has something to do with it, if there is some kind of periodic scanning / polling etc. All speculation at this point, but the conclusion is simply that at the moment I’ve not got a USB Type-C DAC which works flawlessly when plugged into the right port, while I’ve got a workaround which more or less works if the device is plugged into the left port.
+
+Too much snake oil here but at least we now have solution for listening music on the Gemini without enduring the annoying background hiss in Planet’s bundled DAC
+
 ## Miscellaneous
 
 ### Other Magisk Modules
