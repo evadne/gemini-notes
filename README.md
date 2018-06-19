@@ -303,7 +303,52 @@ I also had Kernel Aduitor change CPU governor to performance and minimum frequen
 
 Need to follow up with Planet on why the right port is acting differently, possibly a voltage supply problem and also I suspect the magic HDMI cable only working with the right port has something to do with it, if there is some kind of periodic scanning / polling etc. All speculation at this point, but the conclusion is simply that at the moment I’ve not got a USB Type-C DAC which works flawlessly when plugged into the right port, while I’ve got a workaround which more or less works if the device is plugged into the left port.
 
-Too much snake oil here but at least we now have solution for listening music on the Gemini without enduring the annoying background hiss in Planet’s bundled DAC
+Too much snake oil here but at least we now have solution for listening music on the Gemini without enduring the annoying background hiss in Planet’s bundled DAC.
+
+## Special Section: Apple Music
+
+Goal: Play downloaded Apple Music albums with the Gemini in Android OS with no background hiss, crackling, skipped samples, etc. Basically get a solution that “just works”.
+
+1.  Android OS forcibly upsamples all media to the target device’s highest supported sample rate / bitrate. This means if you’ve got a 24-bit 192KHz USB DAC then every thing you play through the Android OS will be upsampled. This means that it is possible for certain DACs to perform properly on a Mac, for example, but completely fall down when plugged into a Gemini due to upsampling taking too long.
+
+2.  Applications such as USB Audio Player Pro and SDKs such as the Supercharged SDK basically take direct control of the USB device and try very hard to avoid upsampling if they can avoid it. The end result is that most DACs can play audio clearly as long as they are fed only through special applications. This makes it a poor solution for listening to content held in Spotify, Apple Music, YouTube, etc.
+
+3.  The Gemini has a DAC built in and it does take iPhone-style headsets where a microphone is embedded into the cable (tested via Sony’s audio recorder app). So headsets such as Etymotic HF3 work directly (albeit that inline volume buttons currently don’t work). However the built-in DAC is way too noisy and has crosstalk issues, so an external USB Type-C DAC must be found.
+
+4.  The Gemini has 2 USB Type-C ports; the left one has 3 functions: Host, OTG, Pump Express charging. The right one seems to be OTG only.
+
+5.  Whenever I plug a USB Type-C DAC into the right-side port on the Gemini, it always seems to be more unstable and makes more crackling or popping noises, compared to when I plug such a DAC into the left-side port, where the noises are significantly reduced even without tweaks.
+
+6.  This means in order to play proper audio on the Gemini as-is one must have it fully charged. In my real world tests, the Gemini will run for around 6 hours with screen on, in flight mode, with an external USB Type-C DAC connected and Apple Music playing music.
+
+7.  I have since collected four USB Type-C DACs and tested them on the Gemini (X27, 4G version):
+
+    - Cheap adapter “for HTC phones” which came in a single plastic bag
+    - Audiolab “P-DAC” which is however not listed on Audiolab’s site and actually identified on my Mac as a Covix device
+    - Conmdex adapter, with the logo actually being applied to the box as a sticker
+    - dB MAGIX “Flute-C” which came in a rather sophisticated box
+    
+8.  The cheap (£5? £10?) adpater plays mono instead of stereo, it is a complete waste of time to even have tried it. It will be returned.
+
+9.  The Audiolab “P-DAC” adapter runs at a maximum of 24-bit, 192KHz and it can be comfortably driven from my MacBook Pro (2016, 15-inch). However when driven at the maximum sample rate, there is an audible background hiss, which goes away when I force the setting down to 44.1KHz. So this adapter is a bit fishy in my opinion. It can’t be driven comfortably from the Gemini, as it crackles sometimes, which I assume is due to the Android OS wanting to upsample everything to 192KHz and struggling to do so reliably.
+
+10. The Conmdex adapter crackles a bit and has much more noticeable background noise, especially noticeable when doing cross-tests against the dB MAGIX device. There is also a bit more jitters. The only redeeming feature is that it is a bit lighter, but I’d argue that it is too light to be trusted. One thing of note is that it shows up as generic “Headphones” and “Microphone” devices when I plugged it into my Mac, but both my Mac and the Gemini failed to obtain any audio recording from it.
+
+11. dB MAGIX “Flute-C” is acceptable. It comes with a box which tells you to get its companion app, “Soundwise”, which upon launching wanted to update device firmware. There is still a little bit of background noise when it is plugged into the Gemini, but it is quite manageable.
+
+12. The Apple Music app allows storing downloaded music on the SD card. I have built a Smart Playlist in iTunes for Mac, which identifies all songs stored in iCloud. When I sign into Apple Music on the Gemini, and navigate to the smart playlist, I am able to download all songs this way to the SD card.
+
+13. Reading from or writing to the SD card from another application can jeopardise Apple Music playback performance and cause it to miss samples. I have had to make do without another automatic file-mover application which moves screenshots from device memory to the SD card, because its operation is unpredictable and Android OS in general has no idea of I/O prioritisation that needs to be heavily tuned for good real time audio performance. However, I am not confident that another OS would perform any better, given that my baseline is an iPhone SE, which just works, and is available at roughly the same cost as the Gemini.
+
+14. I have also had to build Tasker profiles for when the USB Audio device is inserted or removed. On USB Audio device insertion, Tasker instructs Kernel Aduitor to activate a “Performance” profile, and upon removal of the USB Audio device, the “Interactive” profile is activated. The profiles in Kernel Aduitor are used to change the CPU Governors and the minimum / maximum frequencies during frequency scaling. I have found that a baseline of 1.4GHz minimum frequency used with the “Performance” CPU Governor allows the Gemini to play music for hours without skipping a single sample, while the “Interactive” CPU Governor, when in use, still sometimes cause samples to be dropped.
+
+15. When multiple audio streams are played in Android OS they are mixed together and sent to the audio device. I have noticed that whenever this happens there may be an intermittent crackling noise emitted, which is faint but audible. My solution, though, is to try to avoid any audible notification.
+
+16. I have also configured a larger read-ahead window in Kernel Aduitor for both internal and external memory and changed the I/O scheduler from CFQ to Deadline, to be applied on boot.
+
+17. With the Gemini closed and the dB MAGIX adapter attached, playing music, the Gemini reports roughly 17 hours of operation.
+
+18. I have found the application [“Precise Volume”](https://play.google.com/store/apps/details?id=com.phascinate.precisevolume&hl=en_GB) quite useful for setting granular volume levels. The only problem is that when the application is activated or when one of the sliders is activated, if Apple Music is playing music then there is a hiss (audio glitch) which can be heard every few seconds. But dismissing the application or the slider causes it to go away completely so I’m just going to live with it now. Once you get the app, go to the Equaliser page and the app will probably warn you of other equalisers being active. I’ve seen AudioFX in that list and I disabled that application with no ill effects.
 
 ## Miscellaneous
 
